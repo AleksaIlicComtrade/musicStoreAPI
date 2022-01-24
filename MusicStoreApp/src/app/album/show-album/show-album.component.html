@@ -1,0 +1,16 @@
+<table class="table table-striped">
+    <thead>
+        <th>Id</th>
+        <th>Album Name</th>
+        <th>Description</th>
+        <th>Performer</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of albumList$|async">
+            <td>{{item.id}}</td>
+            <td>{{item.albumName}}</td>
+            <td>{{item.albumDescription}}</td>
+            <td>{{item.performerId}}</td>
+        </tr>
+    </tbody>
+</table>

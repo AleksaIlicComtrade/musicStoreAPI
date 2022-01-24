@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using musicStoreAPI.Data;
 
-//var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +17,15 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 //Enable CORS
-/*builder.Services.AddCors(options=>
+builder.Services.AddCors(options=>
 {
     options.AddPolicy(name: myAllowSpecificOrigins,
         builder =>
         {
-            builder.WithOrigins()
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod().AllowAnyHeader();
         });
-});*/
+});
 
 var app = builder.Build();
 
@@ -47,6 +48,7 @@ app.UseSwaggerUI(c =>
 });
 app.UseAuthorization();
 
+app.UseCors(myAllowSpecificOrigins);
 app.UseHttpsRedirection();
 
 
