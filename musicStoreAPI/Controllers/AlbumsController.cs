@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace musicStoreAPI.Controllers
 
         // GET: api/Albums
         [HttpGet]
+        [EnableCors("myAllowSpecificOrigins")] 
         public async Task<ActionResult<IEnumerable<Album>>> GetAlbums()
         {
             return await _context.Albums.ToListAsync();
