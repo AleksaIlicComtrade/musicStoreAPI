@@ -1,1 +1,37 @@
-<p>add-edit-album works!</p>
+<form class="form-horizontal" ngNativeValidate>
+    <div class="mb-3 form-group">
+        <label for="performerId" class="form-label" >Performer</label>
+        <!-- <input type="text" class="form-control" name="performerId" [(ngModel)]="performerId"  *ngIf="album.id!=0" disabled> -->
+        <select class="form-control"  name="performerId" id="performerId" [(ngModel)]="performerId" *ngIf="album.id!=0" required>
+            
+            <option *ngFor="let performer of performerList$|async" [value]="performer.id">{{performer.performerName}}</option>
+            
+        </select>
+        
+        <select class="form-control" name="performerId" id="performerId" [(ngModel)]="performerId" *ngIf="album.id==0"  required>
+            <option [ngValue]="null" value="" disabled selected>Choose a state</option>
+            
+            <option *ngFor="let performer of performerList$|async" [value]="performer.id">{{performer.performerName}}</option>
+
+        </select>
+        
+    </div>
+    <div class="mb-3 form-group">
+        <label for="albumName" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="albumName" name="albumName"  placeholder="Write the Album Name..." required>
+        
+        
+    </div>
+    <div class="mb-3 form-group">
+        <label for="albumDescription" class="form-label">Description</label>
+        <input type="text" class="form-control" [(ngModel)]="albumDescription" name="albumDescription"  placeholder="Write the Description...">
+    </div>
+    <button type="submit" (click)="addAlbum()" *ngIf="album.id==0" class="btn btn-primary">
+        Add
+    </button>
+
+    <button type="submit" (click)="updateAlbum()" *ngIf="album.id!=0" class="btn btn-primary form-control">
+        Update
+    </button>
+</form>
+

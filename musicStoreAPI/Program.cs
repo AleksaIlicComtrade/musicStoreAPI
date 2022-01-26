@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using musicStoreAPI.Data;
 
-var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 
@@ -12,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -19,11 +23,10 @@ builder.Services.AddDbContext<DataContext>(options =>
 //Enable CORS
 builder.Services.AddCors(options=>
 {
-    options.AddPolicy(name: myAllowSpecificOrigins,
+    options.AddPolicy(myAllowSpecificOrigins,
         builder =>
         {
-            builder.WithOrigins("http://localhost:4200")
-            .AllowAnyMethod().AllowAnyHeader();
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
         });
 });
 
@@ -33,7 +36,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    
+    app.UseCors(myAllowSpecificOrigins);
 }
 
 // Enable middleware to serve generated Swagger as a JSON endpoint.  

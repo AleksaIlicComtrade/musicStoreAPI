@@ -12,17 +12,17 @@ export class AlbumApiService {
   }
   //Albums
   getAlbumList():Observable<any[]>{
-    return this.http.get<any>(this.albumAPIUrl+'/Albums');
+    return this.http.get<any>(this.albumAPIUrl+'/albums');
   }
 
   addAlbum(data:any){
-    return this.http.post(this.albumAPIUrl+'/Albums',data);
+    return this.http.post(this.albumAPIUrl+'/albums',data);
   }
   updateAlbum(id:number|string,data:any){
-    return this.http.put(this.albumAPIUrl+`/Albums/${id}`,data);
+    return this.http.put(this.albumAPIUrl+`/albums/${id}`,data);
   }
   deleteAlbum(id:number|string){
-    return this.http.delete(this.albumAPIUrl+`Albums/${id}`);
+    return this.http.delete(this.albumAPIUrl+`/albums/${id}`);
   }
 
   //Performers

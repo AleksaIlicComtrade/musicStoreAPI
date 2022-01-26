@@ -71,7 +71,8 @@
               "browserTarget": "MusicStoreApp:build:production"
             },
             "development": {
-              "browserTarget": "MusicStoreApp:build:development"
+              "browserTarget": "MusicStoreApp:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

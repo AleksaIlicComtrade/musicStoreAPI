@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AlbumComponent } from './album/album.component';
 import { ShowAlbumComponent } from './album/show-album/show-album.component';
 import { AddEditAlbumComponent } from './album/add-edit-album/add-edit-album.component';
-import { AlbumApiService } from './album-api.service';
+import { AlbumApiService } from './service/album-api.service';
 
 @NgModule({
   declarations: [
